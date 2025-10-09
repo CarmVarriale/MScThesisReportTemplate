@@ -1,0 +1,109 @@
+\documentclass[
+    oneside, % For digital version
+    % twoside, % For printing
+]{.style/tud-mscthesis}
+
+\title{A specific title that focuses on the originality of your work}
+\subtitle{A complementary subtitle, only if necessary}
+\author{Author's name and surname}
+
+\addcoverimage{./images/cover.jpg}
+\addbibresource{./references.bib}
+
+\input{.preamble/fonts}
+\input{.preamble/abbreviations}
+\input{.preamble/maths}
+\input{.preamble/colors}
+\input{.preamble/figures-tables}
+\input{.preamble/charts}
+\input{.preamble/cross-references}
+\input{.preamble/glossaries}
+
+\hyphenation{%
+    %
+}
+
+
+
+\begin{document}
+
+\frontmatter
+\makecover  
+\include{titlepage}
+\include{preface}
+\include{summary}
+
+
+\tableofcontents
+\addcontentsline{toc}{chapter}{\contentsname}
+%\listoffigures
+%\listoftables
+
+%% List of symbols
+\glssetwidest[0]{}
+\glssetwidest[1]{MX}
+\printglossary[
+    type=symbols, 
+    title={List of symbols}, 
+    style=alttree-units]
+\glsdisablehyper
+
+
+%% List of acronyms
+\glssetwidest[0]{MIMO}
+\printglossary[
+    type=acronym, 
+    title={List of acronyms}, 
+    style=alttree]
+
+\mainmatter
+
+\part{Research Definition}
+\label{part:resdef}
+% Deliverable for the Research Proposal Review Meeting
+\include{introduction}
+\include{soa-review}
+\include{research-proposal}
+
+\part{Scientific Article}
+\label{part:sciarticle}
+% Deliverable for the Mid-Term Review Meeting
+% Deliverable for the Green-Light Review Meeting
+\includepdf[%
+    pages=-, 
+    addtotoc={%
+        1,chapter,1,
+        Research in the Flight Performance \& Propulsion Track, % TOC entry
+        ch:sciarticle
+    }%
+]{sciarticle.pdf}
+
+\part{Additional material}
+\label{part:additional}
+% Complementary material for completeness, transparency and reproducibility
+% Optional deliverable for the Mid-Term Review Meeting
+% Optional deliverable for the Green-Light Review Meeting
+% \include{methodology-in-detail}
+% \include{additional-verification-validation}
+% \include{additional-results}
+
+
+\part{Appendix}
+\label{part:appendix}
+\appendix
+% \include{code-listings} % if needed and relevant
+% \include{algorithims} % if needed and relevant
+\include{_mscthesis-process}
+\include{_template-instructions}
+
+
+\backmatter
+\bookmarksetup{startatroot}
+\addtocontents{toc}{\bigskip}
+\printbibliography[
+    heading=bibintoc,
+    title=References,
+    label=bibliography,
+]
+
+\end{document}

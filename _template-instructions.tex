@@ -1,0 +1,383 @@
+\chapter{This template}
+\label{ch:this-template}
+%
+\epigraph{
+    A designer knows he has achieved perfection \\ 
+    not when there is nothing left to add, \\
+    but when there is nothing left to take away.
+}{Antoine de Saint-Exupéry}
+
+\noindent
+This template is the starting point for the document you will be writing, reviewing and updating throughout the MSc Thesis project.
+It is intended to be a \emph{living} document, which means that you will be adding and modifying its content as the project progresses.
+The folder structure is designed to help you organize and monitor your progress, and to keep track of the different parts of the report.
+
+
+What follows is a collection of practices, tools, tips and tricks that I personally use for myself. 
+I have tested and developed them by myself through the years, or stolen them from the precious experience of friends, colleagues, or the internet.
+If they are here, it means that 
+\begin{itemize}
+    \item they make some tasks of my job easier;
+    \item they guarantee a good quality outcome;
+    \item they are well suited for collaboration, hence beneficial for other people (you included).
+\end{itemize}
+%
+The following also includes some common pitfalls that I see happening frequently with other students and/or colleagues. 
+Being aware of them from the very beginning of the MSc Thesis project is going to help all of us save time and effort for more significant contributions to the final quality of the work.
+
+
+This document is \emph{not} telling you to adopt these tools or practices. 
+It is just presenting the system that I constantly develop and refine, so that, in case you don't have one yourself yet, you can be ready for a quick start. 
+It is an attempt at transmitting my experience about the use of tools and techniques that can sometimes be slow and frustrating to learn.
+If you have your own system, if you know some better ways to do things, or if you notice that something does not really work, I encourage you to let me know. 
+I am always interested to check out better ways to do things better.
+
+
+
+\section{Compilation and version management}
+\label{sec:compilation-versioning}
+
+This document has been written using \LaTeX{} in the Microsoft VSCode editor.
+It has been compiled with \texttt{pdflatex} using a local distribution of \href{https://www.tug.org/texlive/}{\TeX Live}.
+A list of VSCode extensions and settings to enable or facilitate the writing and compilation processes is provided in the \texttt{.vscode} folder.
+
+
+You can compile this document by opening the \texttt{main.tex} file in VSCode, pressing \texttt{Ctrl+Shift+P} to open the command palette, and typing \texttt{LaTeX Workshop: Build with recipe}.
+Then select 
+%
+\begin{itemize}
+    \item \texttt{pdflatex} to do a simple compilation
+    \item \texttt{pdflatex $\rightarrow$ biber $\rightarrow$ pdflatex $\rightarrow$ pdflatex} to compile 4 times while building the bibliography and all cross-references correctly, including the table of contents.
+\end{itemize}
+%
+The compiled version of the document is saved as \texttt{main.pdf} in the \texttt{.build} folder.
+
+
+When you are ready to submit the compiled version of this document, copy or move the \texttt{main.pdf} file into the \texttt{submissions} folder, and rename it using the following format:
+%
+\begin{center}
+    \texttt{YYMMDD\_LastnameFirstname\_*.pdf}
+\end{center}
+%
+where \texttt{YYMMDD} is the date of submission (year, month, day), and \texttt{*} is a short description of the status of the report (for example: \texttt{ResearchProposal}, \texttt{MidTerm}, \texttt{GreenLight}, \texttt{Final}).
+
+
+The entire folder structure should also work well with versioning the document using \href{https://git-scm.com/}{Git} or \href{https://www.overleaf.com/}{Overleaf}, but this is entirely up to you.
+Because I will only review the submitted \texttt{.pdf} file, you are free to choose the tools that best suit your needs and preferences.
+
+
+
+
+
+
+
+\section{Writing with \LaTeX}
+
+The template loads a number of packages and custom commands to help you write the report consistently, with a high-quality professional style.
+These are spread in the different files in the \texttt{.style} and \texttt{.preamble} folders.
+%
+Please explore these files for awareness of what is available, and refer to the documentation of the packages for more details.
+The rest of this section provides some examples of use.
+
+
+\subsection{Cross-references}
+Cross-references to chapters~\Cref{ch:introduction}, or sections~\Cref{sec:compilation-versioning}, or equations~\Cref{eq:energy}, or anything else, should generate hyperlinks.
+The command is always the same thanks to the \texttt{cleveref} package, and the outcome changes automatically on the basis of the type of reference.
+
+
+Everything must be referenced in the text before they appear for the first time, as in~\Cref{eq:energy}.
+%
+\begin{equation}
+    E = mc^2
+    \label{eq:energy}
+\end{equation}
+%
+Include an unbreakable space with the command \texttt{\~} before the cross-reference or citation to a bibliographic entry. 
+This prevents the reference from being alone at the beginning of a new line.
+
+
+
+\subsection{Citations}
+It is important to have a well formatted bibliography. It shows that you have put good consideration in the choice of your sources.
+
+
+Citations must be sorted in order of appearance and grouped when appropriate.
+Use citations before commas or full-stops.
+For example: one reference~\cite{Varriale2025}, multiple references~\cite{Varriale2021, Varriale2021a, Varriale2019a}, and different types of sources~\cite{Zilver2025, deZoeten2023, Stickle1968, Pinsker1968}.
+%
+Check the \texttt{references.bib} file to see how they have been saved.
+You can use your favourite reference manager to help you with managing and exporting your references in the appropriate format.
+
+
+Use the \texttt{FirstAuthorYear} citation key, for example: \texttt{Einstein1905}.
+If the \gls{doi} is included in the entry and shows up in the final document, there is no need for any other \gls{url}. 
+If the \gls{doi} is not available for a certain publication, include a \gls{url} if possible. 
+When authors are institutions, companies, or have a compound surname, ensure  the right value by using braces. 
+For example: \texttt{author=\string{\string{van der Sar\string}, E. and ...\string}}, or \texttt{author=\string{\string{European Union Aviation Safety Agency\string}\string}}.
+Software packages or other web resources are best cited with their website \gls{url} in a footnote, if a proper scientific reference is missing.
+Avoid starting a sentence with a citation in the form of a number. Example: ``\ldots and inlet velocity. [19] demonstrated that\ldots ''.
+
+
+
+
+
+
+\subsection{Units of measurement}
+Use the \texttt{siunitx} package to write numbers and units consistently and professionally. 
+For example, \qty{1}{\meter\per\second}, or \num{3.1415} or \si{\kilo\gram\per\meter\cubed}. 
+See~\Cref{tab:example-subtables-horizontal} for more examples, and the \texttt{preamble/maths.tex} file for other units.
+Use \gls{si} units, unless it really does not make sense.
+
+
+The recommended way to indicate variable names and their units on axis labels is ``variable/unit'', according to the \gls{si}. 
+Parentheses around units are also widely accepted.
+In any case, \emph{do not} use brackets around the unit%
+\footnote{Source: \url{https://en.wikipedia.org/wiki/International_System_of_Units\#Lexicographic_conventions}}%
+\footnote{Source: \url{https://academia.stackexchange.com/questions/18357/are-there-any-guidelines-for-labeling-axes-in-plots-graphs}}.  
+%
+
+
+
+
+
+\subsection{Figures and tables}
+Figures and tables must be referenced in the text before they appear for the first time, as in the following~\Cref{fig:example,fig:example-subfigures-horizontal,fig:example-subfigures-vertical,tab:example-multicolumn,tab:example-multirow,tab:example-subtables-horizontal}.
+Make sure that it is the case by using the \texttt{[tbhp]} options.
+% 
+The caption of figures must be placed below the figure, while the caption of tables must be placed above the table.
+You can also refer sub-figures and sub-tables individually, as in~\Cref{fig:subfig-a-horizontal,fig:subfig-b-horizontal,fig:subfig-a-vertical,fig:subfig-b-vertical,table: engine_design_params_a,table: engine_design_params_b}.
+%
+If the document is in one-column format, prefer figures and tables that are wider than tall. If the document is in two-column format, prefer figures and tables that are taller than wide.
+%
+Avoid vertical separation lines in tables if not absolutely necessary.
+
+\begin{figure}[bhtp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{example-image}
+    \caption{An example figure where the image has half the width of the text.}
+    \label{fig:example}
+\end{figure}
+
+
+\begin{figure}[bhtp]
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{example-image-a}
+        \caption{Sub-figure A}
+        \label{fig:subfig-a-horizontal}
+    \end{subfigure}%
+    \hfill%
+    \begin{subfigure}[b]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{example-image-b}
+        \caption{Sub-figure B}
+        \label{fig:subfig-b-horizontal}
+    \end{subfigure}
+    \caption{An example figure with two sub-figures side by side.}
+    \label{fig:example-subfigures-horizontal}
+\end{figure}
+
+
+\begin{figure}[bhtp]
+    \centering
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[height=20pt, width=\linewidth]{example-image}
+        \caption{Subfigure A}
+        \label{fig:subfig-a-vertical}
+    \end{subfigure}%
+    \\[5pt]%
+    \begin{subfigure}[b]{\linewidth}
+        \centering
+        \includegraphics[height=20pt, width=\linewidth]{example-image}
+        \caption{Subfigure B}
+        \label{fig:subfig-b-vertical}
+    \end{subfigure}
+    \caption{An example figure with two sub-figures on top of each other, where both dimensions are assigned.}
+    \label{fig:example-subfigures-vertical}
+\end{figure}
+
+
+\begin{table}[bhtp]
+    \centering
+    \caption{An example table, also including multi-rows}
+    \label{tab:example-multirow}
+    \begin{tabular}{llc}
+        \toprule
+        Phase & Objective & Other\ldots \\
+        \midrule
+        \multirow{2}{*}{Take-off} 
+        & Climb to cruise altitude & \multirow{2}{*}{\ldots} \\
+        & Accelerate to cruise speed & 
+        \\[0.3em]
+        \multirow{2}{*}{Cruise} 
+        & Maintain altitude & \multirow{2}{*}{\ldots} \\
+        & Maintain speed & 
+        \\[0.3em]
+        \multirow{2}{*}{Landing}
+        & Descend to runway & \multirow{2}{*}{\ldots} \\
+        & Decelerate to taxi speed & 
+        \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[bhtp]
+    \centering
+    \caption{An example table, also including multi-columns}
+    \label{tab:example-multicolumn}
+    \begin{tabular}{lllllll}
+        \toprule
+        & \multicolumn{3}{l}{\textbf{Experiment 1}} & \multicolumn{3}{l}{\textbf{Experiment 2}} \\
+        \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+        & Case 1 & Case 2 & Case 3 & Case 1 & Case 2 & Case 3 \\
+        \midrule
+        Parameter A & 1.0 & 2.0 & 3.0 & 1.5 & 2.5 & 3.5 \\
+        Parameter B & 4.0 & 5.0 & 6.0 & 4.5 & 5.5 & 6.5 \\
+        Parameter C & 7.0 & 8.0 & 9.0 & 7.5 & 8.5 & 9.5 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}
+    \centering
+    \caption{An example table with two sub-tables side by side.}
+    \label{tab:example-subtables-horizontal}
+    \begin{subtable}[t]{0.49\linewidth}
+    \centering
+    \caption{Design requirements at cruise}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Parameter} & \textbf{Value} & \textbf{Unit}\\
+        \midrule
+        Some mass & 173 & \unit{\kilo\gram\per\second} \\
+        Some temperature & 1480 & \unit{\kelvin} \\
+        Some angle & 18 & \unit{\degree} \\
+        Some angle & 18 & \unit{\radian} \\
+        Some pressure & 22632 & \unit{\pascal} \\
+        Something dimensionless & \num{27.0} & -- \\
+        Big number & \num{1e6} & \si{\micro\newton} \\
+        \bottomrule
+        \label{table: engine_design_params_a}
+    \end{tabular}
+\end{subtable}%
+%
+\hfill%
+%
+\begin{subtable}[t]{0.49\linewidth}
+    \centering
+    \caption{Design assumptions}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Parameter} & \textbf{Value} \\
+        \midrule
+        Some mass & \qty{173}{\kilo\gram\per\second} \\
+        Some temperature & \qty{1480}{\kelvin} \\
+        Some angle & \qty{18}{\degree} \\
+        Some angle & \qty{18}{\radian} \\
+        Some pressure & \qty{22632}{\pascal} \\
+        Something dimensionless & \num{27.0} \\
+        Big number & \qty{1e6}{\micro\newton} \\
+        \bottomrule
+        \label{table: engine_design_params_b}
+    \end{tabular}
+\end{subtable}
+\end{table}
+
+\clearpage
+
+
+\subsection{Symbols and acronyms}
+Acronyms should appear in their full form the first time they are used, followed by the acronym in parentheses. 
+They should appear only in their short form thereafter.
+Make sure that all relevant words that make the acronym are capitalized.
+%
+Symbols must be explicitly defined or described the first time they appear in the text (either before or after the symbol itself, depending on what works best), unless they are understandable with no risk of confusion from the List of Symbols.
+
+Make use of the commands defined in the \texttt{.preamble/glossaries.tex} file to insert acronyms and symbols in the text.
+For example:
+\begin{itemize}
+    %
+    \item Acronyms that will enter the list of acronyms are saved in the \texttt{.preamble/acronyms.tex} file.: \gls{cg}, \gls{tas};
+    %
+    \item Acronyms that will not enter the list of acronyms are saved in the \texttt{.preamble/acronyms-extra.tex} file.: \gls{nasa}, \gls{ipopt}, \gls{url};
+    %
+    \item Symbols that will enter the list of symbols are saved in the \texttt{.preamble/symbols.tex} file: \gls{alpha}, \gls{V}, \gls{rho};
+    %
+    \item Symbols that will not enter the list of symbols are saved in the \texttt{.preamble/symbols-extra.tex} file.: \gls{lim}, \gls{Minf}, \gls{Tmax}.
+    %
+    \item Symbols with modifiers are obtained with macros defined in the \texttt{.preamble/glossaries.tex} file: \gls{gamma}, \gbar{gamma}, \gdot{gamma}, \gddot{gamma}, \gbold{gamma}
+    %
+    \item Compound symbols are obtained with the macros defined in the \texttt{.preamble/symbols-macros.tex} file: \gsub{delta}{ele}, \gsubsub{C}{D}{0}, \gsup{V}{ref}, \gsubrm{T}{max}, \gsub{B}{ubold}, \gbarsubrm{gamma}{tr}, \ldots
+\end{itemize}
+%
+Note: not all symbols have all modifiers defined, and not all combinations of subscripts and superscripts have been implemented already.
+Please explore the files mentioned above for awareness of what is available.
+
+
+Symbols are divided into three categories: Roman letters, Greek letters, and subscripts/superscripts.
+Feel free to add your own symbols and acronyms in the appropriate files, and rearrange the entries according to your needs.
+Avoid repetition of entries in the List of Symbols.
+
+
+
+
+\section{Good writing practices}
+
+Writing is thinking.
+Good writing is good thinking.
+Do it yourself to learn how to do it.
+Use \gls{ai} for dumb things, like boilerplate code or tedious formatting.
+Do not use \glsentrylong{ai} for things that require \emph{intelligence}.
+Do not let \gls{ai} write for you.
+Do not let \gls{ai} think for you.
+
+
+One sentence conveys one and only one core key point. 
+One paragraph is a small collection of sentences that revolves around the same aspect.
+Use the first sentence of each paragraph to introduce the topic of that paragraph; this is called a \emph{topic sentence}. 
+Use different paragraphs, hence topic sentences, to move on with your argument.
+Write short, clear sentences which would have a good rhythm as when you are speaking them out loud.
+
+
+Write each sentence on a new line of your text editor. 
+In this way you can easily rearrange sentences and test how the paragraph flows. 
+In VSCode, this is done by using the \texttt{Alt+Up/Alt+Down} shortcuts. 
+You can also easily comment/uncomment the whole line with \texttt{Ctrl+/}.
+This also makes it easier to review and version the files using Git.
+These template files have been written using this practice.
+
+
+Do not use 'single quotes' or "double quotes" for reporting someone else's words directly in the text.
+Use rather ``two back-quotes and two single-quotes'', or the \quotes{\texttt{\textbackslash{}quotes\string{\string}}} command.
+
+
+Avoid using abbreviations such as \ie, \eg and \wrt: they break the reading flow since they are not really used in spoken language.
+
+
+Some common phrasings that I typically correct:
+\begin{itemize}
+    \item \quotes{The accuracy is evaluated \emph{based on}\ldots} \textrightarrow{} \quotes{The accuracy is evaluated \emph{on the basis of}\ldots}
+    \item \quotes{Take off} is a verb, \quotes{take-off} is a noun; this is also valid for other similar words/phrases which are composed of a verb + preposition.
+\end{itemize}
+
+
+
+\subsection{Charts}
+An image is worth a thousand words, so it is even more important to make sure that charts are clear and effective.
+To have full cohesiveness between the appearance of charts and the rest of the document, you may consider using the \texttt{tikz} and \texttt{pgfplots} packages to create charts directly in \LaTeX.
+
+
+This requires exporting the data you would like to plot to a \texttt{.csv} file, for instance, which is then read by a \texttt{pgfplots} environment to generate the chart.
+While this may seem cumbersome at first, it has the advantage of separating the scientific content (the data) from the visual representation (the chart).
+This also allows you to easily update the chart when the data changes, without having to redo the entire chart from scratch.
+
+An example is provided in \Cref{fig:example-chart}.
+
+\begin{figure}
+    \centering
+    % \input{charts/data.tex}
+    \caption{An example chart created with \texttt{pgfplots}, reading data from a \texttt{.csv} file.}
+        \label{fig:example-chart}
+\end{figure}

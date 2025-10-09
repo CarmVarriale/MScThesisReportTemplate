@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+	\begin{axis}[%
+			width=1\linewidth,
+			height=0.5\linewidth,
+			clip=false,
+			% xmin=0,
+			% xmax=50,
+			xlabel={\gls{t} (\si{\second})},
+			% ymin=-2.5,
+			% ymax=3,
+            % ytick={-3,-2,-1,0,1,2,3},
+			ylabel={\gls{h} (\si{\meter})},
+			axis x line*=bottom,
+			axis y line*=left,
+			% legend style={at={(0.5, 1.05)}, anchor=south, legend cell align=left, align=left},
+			%
+			% legend columns=2,
+			% transpose legend,
+			% legend style={legend cell align=left, align=left, draw=none,
+					% /tikz/every even column/.style={column sep=5pt,},},
+		]
+		\addplot table [x=a, y=c, col sep=comma] {./charts/data.csv};
+	\end{axis}
+\end{tikzpicture}

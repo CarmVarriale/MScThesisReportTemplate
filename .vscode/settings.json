@@ -1,0 +1,87 @@
+{
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.outDir": "%DIR%/.build",
+    "latex-workshop.latex.recipes": [
+    
+        {
+            "name": "pdflatex",
+            "tools": [
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex ➞ biber ➞ pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "biber",
+                "pdflatex",
+                "pdflatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "command": "latexmk",
+            "name": "latexmk"
+        },
+        {
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-lualatex",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "command": "latexmk",
+            "name": "lualatexmk"
+        },
+        {
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%",
+                "-shell-escape",
+                "%DOC%"
+            ],
+            "command": "pdflatex",
+            "name": "pdflatex"
+        },
+        {
+            "args": [
+                ".build/%DOCFILE%"
+            ],
+            "command": "bibtex",
+            "name": "bibtex"
+        },
+        {
+            "args": [
+                "%OUTDIR%/%DOCFILE%"
+            ],
+            "command": "biber",
+            "name": "biber"
+        },
+        {
+            "args": [
+                "-d%OUTDIR%",
+                "%DOCFILE%"
+            ],
+            "command": "makeglossaries",
+            "name": "makeglossaries"
+        }
+    ],
+    "latex-workshop.message.error.show": false,
+    "latex-workshop.message.warning.show": false,
+    "latex-workshop.view.pdf.tab.editorGroup": "right",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "ltex.language": "en-GB",
+}
