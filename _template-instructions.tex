@@ -80,6 +80,33 @@ Please explore these files for awareness of what is available, and refer to the 
 The rest of this section provides some examples of use.
 
 
+\subsection{Maths}
+
+Use \texttt{\textbackslash left(} and \texttt{\textbackslash right)}, \texttt{\textbackslash left[} and \texttt{\textbackslash right]}, and \texttt{\textbackslash left\textbackslash\{} and \texttt{\textbackslash right\textbackslash\}} to have automatically sized parentheses, brackets, and braces in equations.
+For example:
+\begin{equation*}
+    R = \frac{V}{c}\frac{L}{D}\ln\left( \frac{\gsub{W}{ini}}{\gsub{W}{fin}}\right) 
+\end{equation*}
+
+
+Do not use $\cdot$ to indicate multiplication between variable symbols in equations.
+It may be worth using it for multiplication between numbers, or between variables that are indicated by acronyms (example: \gls{mtom}, \gls{tas}).
+
+
+If you can avoid using variables indicated by acronyms in equations, do it.
+Prefer variables represented by single letters, possibly with subscripts and superscripts.
+For example, prefer \gsubrm{V}{eas} or \gsubrm{V}{eq} to \gls{eas}, and \gsub{m}{mto} to \gls{mtom}.
+
+
+Write chemical formulas using the \texttt{mhchem} package, or the \texttt{\textbackslash mathrm\{\}} command for simple cases.
+For example: $\mathrm{H_2O}$, $\mathrm{CO_2}$.
+Avoid writing them in italics, which is the default in math mode: $H_2O$, $CO_2$.
+
+
+
+
+
+
 \subsection{Cross-references}
 Cross-references to chapters~\Cref{ch:introduction}, or sections~\Cref{sec:compilation-versioning}, or equations~\Cref{eq:energy}, or anything else, should generate hyperlinks.
 The command is always the same thanks to the \texttt{cleveref} package, and the outcome changes automatically on the basis of the type of reference.
@@ -349,14 +376,14 @@ This also makes it easier to review and version the files using Git.
 These template files have been written using this practice.
 
 
-Do not use 'single quotes' or "double quotes" for reporting someone else's words directly in the text.
 Use rather ``two back-quotes and two single-quotes'', or the \quotes{\texttt{\textbackslash{}quotes\string{\string}}} command.
+Do not use 'single quotes' or "double quotes" for reporting someone else's words directly in the text.
 
 
 Avoid using abbreviations such as \ie, \eg and \wrt: they break the reading flow since they are not really used in spoken language.
 
 
-Some common phrasings that I typically correct:
+Be careful with the following common phrasings:
 \begin{itemize}
     \item \quotes{The accuracy is evaluated \emph{based on}\ldots} \textrightarrow{} \quotes{The accuracy is evaluated \emph{on the basis of}\ldots}
     \item \quotes{Take off} is a verb, \quotes{take-off} is a noun; this is also valid for other similar words/phrases which are composed of a verb + preposition.
