@@ -17,8 +17,28 @@
                 "pdflatex",
                 "pdflatex"
             ]
+        },
+        {
+            "name": "pdflatex ➞ makeglossaries ➞ pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "makeglossaries",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "pdflatex ➞ makeglossaries ➞ biber ➞ pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "makeglossaries",
+                "biber",
+                "pdflatex",
+                "pdflatex"
+            ]
         }
     ],
+    "latex-workshop.latex.recipe.default": "first",
     "latex-workshop.latex.tools": [
         {
             "args": [

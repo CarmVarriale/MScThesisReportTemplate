@@ -15,6 +15,30 @@ git clone --recurse-submodules https://github.com/CarmVarriale/MScThesisReportTe
 
 Open the `main.tex` file and follow the instructions line by line.
 
+## Building the document
+
+This workspace is configured for use with the [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) VS Code extension.
+Auto-build on save is disabled — you trigger builds manually using **recipes**.
+
+### How to run a recipe
+
+1. Open `main.tex` (or any `.tex` file in the project).
+2. Open the LaTeX Workshop panel by clicking the **TeX** icon in the Activity Bar on the left.
+3. Under **Build LaTeX project**, click **Recipe: \<name\>** to run a specific recipe, or press the green **▶ Build** button to run the default recipe.
+
+Alternatively, use the Command Palette (`Ctrl+Shift+P`) and run **LaTeX Workshop: Build with recipe**, then select one from the list.
+
+### Available recipes
+
+| Recipe | When to use |
+|---|---|
+| `pdflatex` | Quick build — no bibliography or glossary. **Default.** |
+| `pdflatex ➞ biber ➞ pdflatex × 2` | Full build with bibliography (BibLaTeX/Biber). |
+| `pdflatex ➞ makeglossaries ➞ pdflatex × 2` | Full build with glossary entries. |
+| `pdflatex ➞ makeglossaries ➞ biber ➞ pdflatex × 2` | Full build with both bibliography and glossary. |
+
+> All build output is placed in the `.build/` subdirectory.
+
 ## Contributing
 
 Feel free to open an issue or a pull request if you want to suggest improvements or report bugs. 
