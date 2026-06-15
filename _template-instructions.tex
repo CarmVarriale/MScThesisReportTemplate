@@ -77,7 +77,9 @@ The template loads a number of packages and custom commands to help you write th
 These are spread in the different files in the \texttt{.style} and \texttt{.preamble} folders.
 %
 Please explore these files for awareness of what is available, and refer to the documentation of the packages for more details.
+
 The rest of this section provides some examples of use.
+Please check the corresponding source code in the \texttt{.tex} files to see how they have been implemented, and reuse it.
 
 
 \subsection{Maths}
@@ -267,7 +269,7 @@ Avoid vertical separation lines in tables if not absolutely necessary.
     \end{tabular}
 \end{table}
 
-\begin{table}
+\begin{table}[tbh]
     \centering
     \caption{An example table with two sub-tables side by side.}
     \label{tab:example-subtables-horizontal}
@@ -312,8 +314,6 @@ Avoid vertical separation lines in tables if not absolutely necessary.
 \end{subtable}
 \end{table}
 
-\clearpage
-
 
 \subsection{Symbols and acronyms}
 Acronyms should appear in their full form the first time they are used, followed by the acronym in parentheses. 
@@ -347,8 +347,14 @@ Symbols are divided into three categories: Roman letters, Greek letters, and sub
 Feel free to add your own symbols and acronyms in the appropriate files, and rearrange the entries according to your needs.
 Avoid repetition of entries in the List of Symbols.
 
-
-
+For subscripts and superscripts, use the macros defined in the \texttt{.preamble/symbols-macros.tex} file, which are designed to produce a consistent style throughout the document.
+For example:
+\begin{itemize}
+    \item If a subscript symbol is a word, the initial letter of a word, or an acronym, use the ``roman'' font type of the macros or the \texttt{\textbackslash{}mathrm\{\}} command to have it in upright font: $\gsubrm{V}{eas}, \gsubrm{V}{eq}, \gsub{m}{mto}, \gsubrm{W}{ini}, \gsubrm{W}{fin}, \gsubrm{C}{D}, \gsubrm{C}{L}, \gsubrm{C}{M}, \gsubrm{T}{max}, \gsubrm{T}{min}$.
+    \item If a subscript symbol is a symbol itself, use the regular ``math'' font: $\gsub{V}{alpha}, \gsub{C}{L}, \gsubsub{C}{D}{M}$.
+\end{itemize}
+%
+By using the command macros correctly, the List of Symbols and List of Acronyms will be automatically consistent and well formatted.
 
 \section{Good writing practices}
 
